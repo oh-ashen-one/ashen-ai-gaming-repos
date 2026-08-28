@@ -1,6 +1,6 @@
 # Ashen AI Gaming Repos
 
-Twenty public repos of games built almost entirely by AI models — local
+Nineteen public repos of games built almost entirely by AI models — local
 27B-class models in autonomous loops, and frontier agents — across Godot,
 Unity, Unreal, the browser, Roblox, and bare-metal console homebrew.
 
@@ -47,7 +47,7 @@ this, in order:
 | **Skating / arcade sports** | `grindline` | Godot 4.7 |
 | **Racing game** | `neon-kart-rush-unity` | Unity 6 |
 | **Browser game** | `rivet-down`, `browser-minecraft`, tiktok-chameleon variants | Node + Vite, three.js |
-| **Roblox game** | `roblox-infected` | Roblox Studio (+ MCP) |
+| **Roblox game** | 🔒 `roblox-infected` (members-only) | Roblox Studio (+ MCP) |
 | **Big 3D showcase** | `Opus-5-Three-Games` (STORMFALL) | Unreal Engine 5.8 |
 | **Retro homebrew** | `n64game`, `elden-ring-3ds-demake` | libdragon / devkitARM |
 | **A benchmark of models** | 🔒 `ai-game-arena` (members-only) | — (it's a format, not a game) |
@@ -265,7 +265,7 @@ study of how five models solve the same brief.
 
 ## 🤖 Roblox
 
-### [`roblox-infected`](https://github.com/oh-ashen-one/roblox-infected) — INFECTED
+### 🔒 `roblox-infected` — INFECTED *(members-only)*
 A live 30-player hidden-infection round game (COD Infected × Murder
 Mystery). Server-authoritative Luau, smart bots that fill empty lobbies,
 retention loops, 5 maps, no pay-to-win.
