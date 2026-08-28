@@ -1,6 +1,6 @@
 # Ashen AI Gaming Repos
 
-Nineteen public repos of games built almost entirely by AI models — local
+Twenty public repos of games built almost entirely by AI models — local
 27B-class models in autonomous loops, and frontier agents — across Godot,
 Unity, Unreal, the browser, Roblox, and bare-metal console homebrew.
 
@@ -45,6 +45,7 @@ this, in order:
 | **3D desktop game** | `minecraft-kimi-k3`, `Call-of-Duty-Sol-Ultra`, `Opus-5-Three-Games` | Godot 4.7 (+ godot-mcp) |
 | **Fighter / action game** | `bonebreaker` | Godot 4.7 |
 | **Skating / arcade sports** | `grindline` | Godot 4.7 |
+| **Space / arcade flight** | `space-salvage` | Godot 4.7 |
 | **Racing game** | `neon-kart-rush-unity` | Unity 6 |
 | **Browser game** | `rivet-down`, `browser-minecraft`, tiktok-chameleon variants | Node + Vite, three.js |
 | **Roblox game** | 🔒 `roblox-infected` (members-only) | Roblox Studio (+ MCP) |
@@ -182,6 +183,17 @@ Mortal Kombat-style 1v1 fighter vs AI, ~25k lines of GDScript, CC0 art.
 kick / special / block / crouch), `src/fighter/ai_brain.gd` (opponent AI),
 `quality/contract.json` + `tools/` (how to gate a game behind a mechanical
 quality contract instead of eyeballing).
+
+### [`space-salvage`](https://github.com/oh-ashen-one/space-salvage) — Space Salvage
+Godot 4.7 debris-field salvage run: fly a battered skiff through a dying star
+system, tractor-beam pods home before the hull gives out. Every line written by
+a local Qwen3.8-27B in an autonomous loop — 27/27 stories, 82/82 tests, two
+days, no API bill.
+**Steal this:** `scripts/ralph/godot/verify-*.sh` — three judges (parse, GUT
+suite, real-game sim) that a model cannot argue with, plus `prd.json` with
+`allowedFiles` caps and `progress.txt` as a lab notebook you can scroll to
+watch two stories rut and recover. Its README documents the design bible and
+the 2-fail rule that ended the ruts.
 
 ### [`grindline`](https://github.com/oh-ashen-one/grindline) — GRINDLINE
 THPS2-style arcade skater in Godot 4.7: push/carve, ollie, rail grinds with a
