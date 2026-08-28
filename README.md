@@ -1,6 +1,6 @@
 # Ashen AI Gaming Repos
 
-Eighteen public repos of games built almost entirely by AI models — local
+Nineteen public repos of games built almost entirely by AI models — local
 27B-class models in autonomous loops, and frontier agents — across Godot,
 Unity, Unreal, the browser, Roblox, and bare-metal console homebrew.
 
@@ -46,6 +46,62 @@ this, in order:
 | **Big 3D showcase** | `Opus-5-Three-Games` (STORMFALL) | Unreal Engine 5.8 |
 | **Retro homebrew** | `n64game`, `elden-ring-3ds-demake` | libdragon / devkitARM |
 | **A benchmark of models** | `ai-game-arena` | — (it's a format, not a game) |
+| **A frontier-agent loop harness** | `Claude-Opus-5-Red-Sands-One-Shot-Gauntlet-Loop` | Node + Vite, three.js |
+
+---
+
+## 🥇 The frontier-agent reference — what Opus 5 does with a Gauntlet Loop
+
+### [`Claude-Opus-5-Red-Sands-One-Shot-Gauntlet-Loop`](https://github.com/oh-ashen-one/Claude-Opus-5-Red-Sands-One-Shot-Gauntlet-Loop)
+
+Every other repo in this collection is a local 27B model grinding against a
+mechanical gate. This one is the opposite end of the scale: **Claude Opus 5,
+one continuous session, fanning out sub-agents against a brief of "a
+60-minute samurai adventure at the level of Ghost of Tsushima."**
+
+The result is ~21,000 lines of three.js with **zero imported assets** — every
+mesh, shader, sound and line of dialogue generated in code — a ten-beat
+playable hour, a rideable horse, melee combat, day/night, and 66–99fps at
+1080p.
+
+But the game is not why it's here. **The loop is.**
+
+**The Gauntlet Loop, in five rules:**
+
+1. **Cut the game into pieces a single screenshot can judge.** Sixteen here:
+   terrain, sky, grass, trees, water, postfx, vfx, character, locomotion,
+   camera, combat, enemy AI, HUD, audio, horse, quest. "Atmosphere" fails that
+   test; "sky at golden hour" passes.
+2. **Every builder gets a private copy of the repo on its own port** (a
+   "lane"), with an owned file list. Sixteen agents ran in parallel for hours
+   with zero merge conflicts.
+3. **The critic is a separate sub-agent with fresh context that only ever sees
+   rendered frames — never the builder's summary.** It compares blind against
+   real Ghost of Tsushima reference and names *one* gap. That one sentence is
+   the entire next brief. No fixed number of rounds; loop until it prefers
+   ours.
+4. **Judge motion, not stills.** A headless harness drives scripted input and
+   assembles frame bursts into video, because gait, weight, camera lag and
+   attack timing are invisible in a screenshot — and a still-image critic will
+   happily pass a game that plays like mud.
+5. **Between waves, one fresh agent plays the whole thing end to end** and
+   reports on coherence, not quality.
+
+**Steal this:** `tools/lane.sh` + `tools/merge-lane.sh` (parallel-agent
+isolation without branches), `tools/shoot.mjs` + `tools/burst.mjs` (the
+headless critique harness — poses, scripted input, contact sheets, mp4), the
+`window.__GAME` debug API pattern (teleport / set time / jump to any story
+beat, so the harness can photograph beat 9 without playing to beat 9), and
+`src/world/terrain.js`'s single analytic `heightAt(x,z)` that every other
+system queries — the one architectural idea most worth copying.
+
+**And read its README before you read its code.** It is a full post-mortem:
+nine documented failures with root causes, including the guard that caught and
+discarded exceptions and thereby hid every line of dialogue in the game for
+two entire waves; the full-frame artifact that two critics and the model
+itself all confidently misdiagnosed; and framerate panic caused by measuring
+in a lane instead of on canonical. The mistakes transfer further than the
+code does.
 
 ---
 
@@ -220,6 +276,10 @@ mechanical gate: build → headless launch → parse/test → feed failures back
 [snarktank/ralph](https://github.com/snarktank/ralph) is the loop harness;
 a local model (LM Studio, Ollama — 27B class is enough, see CUBELAND) is
 the worker. The gate matters more than the model.
+
+For the frontier-agent version of the same idea — where the gate is a fresh
+critic sub-agent looking at rendered frames instead of a test suite — see
+`Claude-Opus-5-Red-Sands-One-Shot-Gauntlet-Loop` above.
 
 ---
 
