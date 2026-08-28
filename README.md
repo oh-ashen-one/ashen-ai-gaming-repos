@@ -1,11 +1,15 @@
 # Ashen AI Gaming Repos
 
-Twenty-three public repos of games built almost entirely by AI models — local
+Twenty public repos of games built almost entirely by AI models — local
 27B-class models in autonomous loops, and frontier agents — across Godot,
 Unity, Unreal, the browser, Roblox, and bare-metal console homebrew.
 
-This README is the map. Everything below is public and meant to be read,
-cloned, and stolen from.
+This README is the map. Everything linked below is public and meant to be
+read, cloned, and stolen from.
+
+A few of the best builds — and the loop harness, skill files and session
+logs that produced them — are **🔒 members-only**, described here but shared
+privately with my Skool community. They're marked inline.
 
 ---
 
@@ -40,20 +44,25 @@ this, in order:
 |---|---|---|
 | **3D desktop game** | `minecraft-kimi-k3`, `Call-of-Duty-Sol-Ultra`, `Opus-5-Three-Games` | Godot 4.7 (+ godot-mcp) |
 | **Fighter / action game** | `bonebreaker` | Godot 4.7 |
+| **Skating / arcade sports** | `grindline` | Godot 4.7 |
 | **Racing game** | `neon-kart-rush-unity` | Unity 6 |
 | **Browser game** | `rivet-down`, `browser-minecraft`, tiktok-chameleon variants | Node + Vite, three.js |
 | **Roblox game** | `roblox-infected` | Roblox Studio (+ MCP) |
 | **Big 3D showcase** | `Opus-5-Three-Games` (STORMFALL) | Unreal Engine 5.8 |
 | **Retro homebrew** | `n64game`, `elden-ring-3ds-demake` | libdragon / devkitARM |
-| **A benchmark of models** | `ai-game-arena` | — (it's a format, not a game) |
-| **A frontier-agent loop harness** | `Claude-Opus-5-Red-Sands-One-Shot-Gauntlet-Loop` | Node + Vite, three.js |
-| **The same brief, four models** | `slop-of-tsushima` ×4 (kimi / codex / qwen / grok) | Node + Vite, three.js |
+| **A benchmark of models** | 🔒 `ai-game-arena` (members-only) | — (it's a format, not a game) |
+| **A frontier-agent loop harness** | 🔒 `Claude-Opus-5-Red-Sands-One-Shot-Gauntlet-Loop` (members-only) | Node + Vite, three.js |
+| **The same brief, four models** | `slop-of-tsushima-qwen`, `-grok` public · 🔒 kimi + codex members-only | Node + Vite, three.js |
 
 ---
 
 ## 🥇 The frontier-agent reference — what Opus 5 does with a Gauntlet Loop
 
-### [`Claude-Opus-5-Red-Sands-One-Shot-Gauntlet-Loop`](https://github.com/oh-ashen-one/Claude-Opus-5-Red-Sands-One-Shot-Gauntlet-Loop)
+### 🔒 `Claude-Opus-5-Red-Sands-One-Shot-Gauntlet-Loop` — members-only
+
+*The write-up below is public. The repo, the loop harness and the skill files
+that drive it are shared with my Skool community — see “Getting the
+members-only repos” at the bottom.*
 
 Every other repo in this collection is a local 27B model grinding against a
 mechanical gate. This one is the opposite end of the scale: **Claude Opus 5,
@@ -119,14 +128,14 @@ four builds off one commit tell you what actually separates them.
 Run any of them: `npm install && npx vite` → walk **WASD**, mount **E**,
 gallop **Shift**.
 
-### 🥇 [`slop-of-tsushima`](https://github.com/oh-ashen-one/slop-of-tsushima) — Kimi K3
+### 🥇 🔒 `slop-of-tsushima` — Kimi K3 *(members-only)*
 **1st — director's pick.** The full build: a Meshy white stallion, samurai
 clips, an H3 title menu, Suno music. The only lane that finished the
 presentation layer, not just the world.
 **Steal this:** how far a lane gets when the model treats menu, music and
 mount animation as part of the game rather than as polish to add later.
 
-### 🥈 [`slop-of-tsushima-codex`](https://github.com/oh-ashen-one/slop-of-tsushima-codex) — Codex GPT-5.6
+### 🥈 🔒 `slop-of-tsushima-codex` — Codex GPT-5.6 *(members-only)*
 **2nd — strong atmosphere, frozen as built.** Reads as the most coherent
 *place* of the four.
 **Steal this:** `src/player/horse/` — the horse is built procedurally in code
@@ -173,6 +182,19 @@ Mortal Kombat-style 1v1 fighter vs AI, ~25k lines of GDScript, CC0 art.
 kick / special / block / crouch), `src/fighter/ai_brain.gd` (opponent AI),
 `quality/contract.json` + `tools/` (how to gate a game behind a mechanical
 quality contract instead of eyeballing).
+
+### [`grindline`](https://github.com/oh-ashen-one/grindline) — GRINDLINE
+THPS2-style arcade skater in Godot 4.7: push/carve, ollie, rail grinds with a
+balance meter, 2:00 scored runs, golden-hour industrial plaza. 100% of the app
+code written by a builder agent against mechanical tests — two days, 40
+commits, 15/15 stories green.
+**Steal this:** `game/sim/sim_bridge.gd` — a JSON-driven harness that drives
+the real game headless (`start`, `seekMs`, `soak` at 20× time scale, `input`,
+`teleport`, `assert`, `probe`, `screenshot`), so a test can say "push 900ms,
+ollie, assert apex between 1.25 and 1.56" against actual physics in ~4
+seconds. Also `tests_staged/` (manager-owned tests the agent may not edit) and
+the README's 13 lessons — including the Godot 4.7 trap where a script-created
+shadowed `DirectionalLight3D` is silently inert.
 
 ### [`neon-kart-rush-unity`](https://github.com/oh-ashen-one/neon-kart-rush-unity) — Neon Kart Rush
 Unity 6 arcade kart racer: 3 laps, 4 characters, items, drift, DualSense
@@ -273,7 +295,7 @@ agent doing the typing.
 
 ## 🏟️ Meta
 
-### [`ai-game-arena`](https://github.com/oh-ashen-one/ai-game-arena)
+### 🔒 `ai-game-arena` — members-only
 Not a game — a **format**: the same game brief goes to a lineup of AI
 models, each builds in an identical sandbox, and mechanical judging
 (Playwright / headless engine checks + a rubric) scores the results on a
@@ -332,3 +354,19 @@ Code here is shared so you can learn from it and lift mechanisms. Repos
 carry whatever LICENSE file they carry — check before shipping something
 commercial. When in doubt: steal the *idea* and the *architecture*, write
 your own lines. That's what the models did.
+
+---
+
+## 🔑 Getting the members-only repos
+
+Three builds and the harness behind them are private: the **Opus 5 Gauntlet
+Loop**, the **Kimi K3** and **Codex** Tsushima lanes, and the **arena** format
+itself (rules, rubric, judge, prompts and session logs).
+
+They're shared with members of my Skool community, along with the skill files
+and the loop scripts needed to run the format yourself. Everything else in
+this README is public and always will be.
+
+**Already a member?** Send me your GitHub username and you'll be added as a
+collaborator on the private repos — you clone and pull them like any other
+repo, and you get every update as new episodes run.
