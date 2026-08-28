@@ -1,6 +1,6 @@
 # Ashen AI Gaming Repos
 
-Nineteen public repos of games built almost entirely by AI models — local
+Twenty-three public repos of games built almost entirely by AI models — local
 27B-class models in autonomous loops, and frontier agents — across Godot,
 Unity, Unreal, the browser, Roblox, and bare-metal console homebrew.
 
@@ -47,6 +47,7 @@ this, in order:
 | **Retro homebrew** | `n64game`, `elden-ring-3ds-demake` | libdragon / devkitARM |
 | **A benchmark of models** | `ai-game-arena` | — (it's a format, not a game) |
 | **A frontier-agent loop harness** | `Claude-Opus-5-Red-Sands-One-Shot-Gauntlet-Loop` | Node + Vite, three.js |
+| **The same brief, four models** | `slop-of-tsushima` ×4 (kimi / codex / qwen / grok) | Node + Vite, three.js |
 
 ---
 
@@ -102,6 +103,48 @@ two entire waves; the full-frame artifact that two critics and the model
 itself all confidently misdiagnosed; and framerate panic caused by measuring
 in a lane instead of on canonical. The mistakes transfer further than the
 code does.
+
+---
+
+## ⚔️ The four-model comparison — same brief, same base, judged blind
+
+Episode 02 of the arena. Four models were handed the **same** starting
+codebase ([`gillworks/red-sands`](https://github.com/gillworks/red-sands),
+MIT — a procedural three.js western), the same asset kit, and the same brief:
+convert it into a Ghost-of-Tsushima golden field. Then they were judged blind.
+
+Read these **as a set**. One build in isolation tells you what a model can do;
+four builds off one commit tell you what actually separates them.
+
+Run any of them: `npm install && npx vite` → walk **WASD**, mount **E**,
+gallop **Shift**.
+
+### 🥇 [`slop-of-tsushima`](https://github.com/oh-ashen-one/slop-of-tsushima) — Kimi K3
+**1st — director's pick.** The full build: a Meshy white stallion, samurai
+clips, an H3 title menu, Suno music. The only lane that finished the
+presentation layer, not just the world.
+**Steal this:** how far a lane gets when the model treats menu, music and
+mount animation as part of the game rather than as polish to add later.
+
+### 🥈 [`slop-of-tsushima-codex`](https://github.com/oh-ashen-one/slop-of-tsushima-codex) — Codex GPT-5.6
+**2nd — strong atmosphere, frozen as built.** Reads as the most coherent
+*place* of the four.
+**Steal this:** `src/player/horse/` — the horse is built procedurally in code
+(body, coat, hair, collider, rig as separate modules) instead of imported. It
+is the better horse of the two top lanes, and it's five readable files.
+
+### 🥉 [`slop-of-tsushima-qwen`](https://github.com/oh-ashen-one/slop-of-tsushima-qwen) — Qwen3.8-27B (local)
+**3rd — verify-green-but-broken.** The instructive failure. Seven of eight
+stories "passed" their gates and the result is still stock Red Sands: it did
+essentially none of the Japanese conversion. Nothing lied; the *gates* were
+greps, and greps pass on code that runs and means nothing.
+**Steal this:** the argument for screenshot-judged acceptance over
+text-matched acceptance. This lane is the proof, and it cost nothing to run.
+
+### 💀 [`slop-of-tsushima-grok`](https://github.com/oh-ashen-one/slop-of-tsushima-grok) — Grok 4.6
+**DQ — boot failure, frozen as built for the autopsy.** Kept public on
+purpose: a build that never boots is a data point about where an autonomous
+lane breaks, and deleting it would flatter the format.
 
 ---
 
