@@ -49,6 +49,7 @@ this, in order:
 | **Racing game** | `neon-kart-rush-unity` | Unity 6 |
 | **Browser game** | `rivet-down`, `browser-minecraft`, tiktok-chameleon variants | Node + Vite, three.js |
 | **Roblox game** | 🔒 `roblox-infected` (members-only) | Roblox Studio (+ MCP) |
+| **Boss fight / melee combat** | 🔒 `dragon-boss-fight` — Veyr (members-only) | Unreal Engine 5.8 |
 | **Big 3D showcase** | `Opus-5-Three-Games` (STORMFALL) | Unreal Engine 5.8 |
 | **Retro homebrew** | `n64game`, `elden-ring-3ds-demake` | libdragon / devkitARM |
 | **A benchmark of models** | 🔒 `ai-game-arena` (members-only) | — (it's a format, not a game) |
@@ -231,6 +232,42 @@ plus full-match simulations), and UE5↔Godot as a same-brief comparison.
 
 ---
 
+## 🐉 Unreal boss fight
+
+### 🔒 `dragon-boss-fight` — Veyr: The Cinder Warden *(members-only)*
+
+*The write-up is public. The repo and a ready-to-play macOS build are shared
+with my Skool community — see “Getting the members-only repos” at the bottom.*
+
+An original knight-versus-dragon encounter in native Unreal Engine 5.8 C++
+(~30k lines), in a gothic fortress. The dragon has four legs that take damage
+separately. Break enough of them and it collapses, exposing its head for a
+short window before it rises again. You get guard direction, stamina, roll
+invulnerability, a blink, heavy attacks, limited heals and lock-on. Fire,
+bites, claws, stomps, tail sweeps and flight all have visible wind-ups and
+danger areas.
+
+Frontier agents built it over five weeks, with every change checked by
+scripted native gameplay runs and screenshots. The final build passed its
+camera, controls and full-victory runs (the dragon dies in about 48 seconds
+of scripted play).
+
+Members get a **ZIP**: unzip it, double-click **Play Veyr**, and it opens in
+a resizable window that fits your screen. It's a Mac Shipping build; the
+first time, right-click and choose Open.
+
+**Steal this:** `tools/unreal/run_native.py` (one command runs a Shipping
+build through ~30 scripted scenarios, like `victory`, `leg0`–`leg3`, `guard`
+and `cameracontrol`, and returns pass/fail with evidence). The `*Proof.cpp`
+files show how to build those scenarios into the game itself, so an agent
+can test camera framing, foot contact or a blend without a human playing.
+Read `VeyrDragon.cpp` for the per-leg stagger, collapse and head-exposure
+loop, `VeyrCameraRig.cpp` and `VeyrThreatCamera.cpp` for a lock-on camera
+that keeps a huge boss and a small player on screen together, and
+`HANDOFF.md` for an honest record of what passed, what failed and why.
+
+---
+
 ## 🌐 Browser games — the easiest to steal wholesale
 
 Zero install for players; an agent only needs Node + Vite. All of these run
@@ -371,9 +408,10 @@ your own lines. That's what the models did.
 
 ## 🔑 Getting the members-only repos
 
-Three builds and the harness behind them are private: the **Opus 5 Gauntlet
-Loop**, the **Kimi K3** and **Codex** Tsushima lanes, and the **arena** format
-itself (rules, rubric, judge, prompts and session logs).
+A few builds and the harness behind them are private: the **Opus 5 Gauntlet
+Loop**, the **Kimi K3** and **Codex** Tsushima lanes, **INFECTED** on Roblox,
+the **Veyr** dragon boss fight (with a playable Mac ZIP), and the **arena**
+format itself (rules, rubric, judge, prompts and session logs).
 
 They're shared with members of my Skool community, along with the skill files
 and the loop scripts needed to run the format yourself. Everything else in
